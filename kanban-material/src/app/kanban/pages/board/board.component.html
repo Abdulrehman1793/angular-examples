@@ -1,0 +1,14 @@
+<div cdkDropList (cdkDropListDropped)="dropBoard($event)" cdkDropListOrientation="horizontal">
+  <div cdkDropListGroup class="container">
+    <div [id]="board.name" *ngFor="let board of boards" class="board-container" cdkDrag [cdkDragData]="board.name">
+      <div class="board-title-container">
+        <h2>{{board.name|titlecase}}</h2>
+        <mat-icon class="cursor-move" cdkDragHandle>drag_indicator</mat-icon>
+      </div>
+
+      <div cdkDropList [cdkDropListData]="board.tasks" class="board-list" (cdkDropListDropped)="drop($event)">
+        <div class="board-list-box" *ngFor="let task of board.tasks" cdkDrag>{{task}}</div>
+      </div>
+    </div>
+  </div>
+</div>
